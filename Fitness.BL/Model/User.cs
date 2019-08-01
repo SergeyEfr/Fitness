@@ -21,15 +21,20 @@ namespace Fitness.BL.Model
             {
                 throw new ArgumentNullException("Имя не может быть пустым", nameof(name));
             }
-            if (gender == null)
-            {
-                throw new ArgumentNullException("Пол не может быть null",nameof(gender));
-            }
-            if (birthDate < DateTime.Parse("01.01.1900")  ) 
-            {
-                throw new ArgumentNullException("Это фитнесс-приложение не для долгожителей ",
-                nameof(birthDate));
-            }
+            
+            
+             if (gender == null)
+              {
+                    throw new ArgumentNullException("Пол не может быть null", nameof(gender));
+              }  
+            
+            
+                if (birthDate < DateTime.Parse("01.01.1900"))
+                {
+                    throw new ArgumentNullException("Это фитнесс-приложение не для долгожителей ", nameof(birthDate));
+                }
+            
+            
             if (birthDate >= DateTime.Now)
             {
                 throw new ArgumentNullException("Это приложение не для прибывших из будущего",
@@ -55,10 +60,13 @@ namespace Fitness.BL.Model
         }
         public User(string name)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException("Имя не может быть пустым", nameof(name));
-            }
+           
+            
+              if (string.IsNullOrWhiteSpace(name))
+                {
+                    throw new ArgumentNullException("Имя не может быть пустым", nameof(name));
+                }
+            
             Name = name;
         }
         public override string ToString()

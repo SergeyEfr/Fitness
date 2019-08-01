@@ -8,7 +8,7 @@ using Fitness.BL.Model;
 
 namespace Fitness.BL.Controller
 {
-    public class UserController
+    public class UserController: ControllerBase
     {
         public List <User> Users { get; }
         public User CurrentUser { get; }
@@ -16,9 +16,16 @@ namespace Fitness.BL.Controller
        
         public UserController(string userName)
         {
-           if (string.IsNullOrWhiteSpace(userName))
+            try
             {
-                throw new ArgumentNullException("Имя пользователя не может быть пустым", nameof(userName));
+                if (string.IsNullOrWhiteSpace(userName))
+                {
+                    throw new ArgumentNullException("Сделайте, пожалуйста, имя пользователя не пустым", nameof(userName));
+                }
+            }
+            catch(ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
             }
             Users = GetUsersData();
             CurrentUser = Users.SingleOrDefault(u => u.Name == userName);
@@ -42,6 +49,7 @@ namespace Fitness.BL.Controller
         }
         private List<User> GetUsersData()
         {
+            return Load<List<User>>("users.dat") ?? new List<User>();
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
