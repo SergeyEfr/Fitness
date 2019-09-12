@@ -3,14 +3,15 @@
 
 namespace Fitness.BL.Model
 {
-   public class Food
+    [Serializable]
+    public class Food
     {
         public string Name { get; }
         public double Proteins { get; }
         public double Fats { get; }
         public double Carbohydrates { get; }
-        //Калории за 100 гр продукта
         public double Calories { get; }
+        
 
 
 
@@ -18,7 +19,7 @@ namespace Fitness.BL.Model
         {
             
         }
-
+        //Вычисляется в расчёте на 1 гр продукта( деление на 100гр)
         public Food(string name, double calories, double proteins, double fats, double cabrohydrates)
         {
             Name = name;

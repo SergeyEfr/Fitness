@@ -4,12 +4,13 @@ using System.Linq;
 
 namespace Fitness.BL.Model
 {
+    [Serializable]
     //Приём пищи
     public class Eating
     {
         //Момент приёма пищи
         public DateTime Moment { get; }
-        //Список продуктов
+        //Список продуктов и количество(вес)
         public Dictionary <Food, double> Foods { get; }
         //Пользователь
         public User User { get; }
